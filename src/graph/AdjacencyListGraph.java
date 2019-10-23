@@ -1,9 +1,31 @@
 package graph;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class AdjacencyListGraph<V> implements IGraph<V>{
+	
+	private Map<V,Integer> vertices;	
+	private List<V> adjacencyList;
+	private boolean isDirected;
+	
+	public AdjacencyListGraph() {
+		initialize();
+	}
 
+	public AdjacencyListGraph(boolean id) {
+		initialize();
+		isDirected = id;
+	}
+	
+	private final void initialize() {
+		isDirected = false;
+		adjacencyList = new ArrayList<V>();
+		vertices = new HashMap<V, Integer>();
+	}
+	
 	@Override
 	public boolean addVertex(V v) {
 		// TODO Auto-generated method stub
@@ -50,6 +72,12 @@ public class AdjacencyListGraph<V> implements IGraph<V>{
 	public double[][] weightMatrix() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public boolean isDirected() {
+		// TODO Auto-generated method stub
+		return false;
 	}
 	
 }
