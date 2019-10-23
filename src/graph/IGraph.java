@@ -11,4 +11,5 @@ public interface IGraph<V> {
 	public List<V> vertexAdjacent(V v);
 	public boolean areConnected(V u, V v);
 	public double[][] weightMatrix();
+	public boolean isDirected();
 }
