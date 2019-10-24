@@ -28,8 +28,17 @@ public class AdjacencyListGraph<V> implements IGraph<V>{
 	
 	@Override
 	public boolean addVertex(V v) {
-		// TODO Auto-generated method stub
-		return false;
+		boolean added = false;
+		if(!searchVertex(v)) {
+			int key = adjacencyLists.size();
+			vertices.put(v, key);
+			added = true;
+		}
+		return added;
+	}
+
+	private boolean searchVertex(V v) {
+		return vertices.containsValue(v);
 	}
 
 	@Override
