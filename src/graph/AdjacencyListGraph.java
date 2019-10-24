@@ -40,10 +40,24 @@ public class AdjacencyListGraph<V> implements IGraph<V>{
 	private boolean searchVertex(V v) {
 		return vertices.containsValue(v);
 	}
+	
 
+	//pre: u y v tienen que estar en el mapa de los vertices
+	// si el grafo es dirigido , la arista se agreta de direccion u --- > v
 	@Override
 	public void addEdge(V u, V v) {
 		// TODO Auto-generated method stub
+	
+		int ValueU = vertices.get(u);
+		int ValueV = vertices.get(v);
+		
+		if(!isDirected) {
+			adjacencyLists.get(ValueU).add(v);
+			adjacencyLists.get(ValueV).add(u);
+		}else {
+			
+			adjacencyLists.get(ValueU).add(v);
+		}
 		
 	}
 
@@ -82,7 +96,6 @@ public class AdjacencyListGraph<V> implements IGraph<V>{
 	@Override
 	public void removeEdge(V u, V v) {
 		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
