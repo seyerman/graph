@@ -53,10 +53,30 @@ public class AdjacencyListGraph<V> implements IGraph<V>{
 		
 	}
 
+	@SuppressWarnings("unlikely-arg-type")
 	@Override
 	public boolean removeVertex(V v) {
-		// TODO Auto-generated method stub
-		return false;
+		
+		// first looks if the vertex exists
+		if(vertices.containsKey(v)) {
+			
+			// remove the existing list which represents the adjacent vertices of the vertex to remove
+			adjacencyLists.remove(vertices.get(v));
+			
+			// remove any existing connection to the vertex
+			for(int i=0; i<adjacencyLists.size(); i++) {
+				if(adjacencyLists.get(i).contains(v)) adjacencyLists.get(i).remove(i);
+			}
+			
+			// removes the vertex form the map
+			vertices.remove(v);
+			
+			return true;
+			
+		}else {
+			return false;
+		}
+		
 	}
 
 	@Override
@@ -73,8 +93,21 @@ public class AdjacencyListGraph<V> implements IGraph<V>{
 
 	@Override
 	public boolean areConnected(V u, V v) {
-		// TODO Auto-generated method stub
-				return false;
+		
+		int uValor = vertices.get(u);
+		int vValor = vertices.get(v);
+		
+//		return adjacencyLists.get(uValor).contains(v) || adjacencyLists.get(uValor).contains(v);
+//		This return exists in case there is no need of being specific about the direction
+		
+		if(isDirected) {
+			return adjacencyLists.get(uValor).contains(v);
+			// this returns if u connected and directed to v
+		}else {
+			return adjacencyLists.get(uValor).contains(v) && adjacencyLists.get(vValor).contains(u);
+			// in case the graph is not connected then both should be connected to each other
+		}
+		
 	}
 
 	@Override
