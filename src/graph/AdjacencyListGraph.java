@@ -8,7 +8,7 @@ import java.util.Map;
 public class AdjacencyListGraph<V> implements IGraph<V>{
 	
 	private Map<V,Integer> vertices;	
-	private List<V> adjacencyList;
+	private List<List<V>> adjacencyLists;
 	private boolean isDirected;
 	
 	public AdjacencyListGraph() {
@@ -22,7 +22,7 @@ public class AdjacencyListGraph<V> implements IGraph<V>{
 	
 	private final void initialize() {
 		isDirected = false;
-		adjacencyList = new ArrayList<V>();
+		adjacencyLists = new ArrayList<List<V>>();
 		vertices = new HashMap<V, Integer>();
 	}
 	
@@ -65,7 +65,7 @@ public class AdjacencyListGraph<V> implements IGraph<V>{
 	@Override
 	public boolean areConnected(V u, V v) {
 		// TODO Auto-generated method stub
-		return false;
+				return false;
 	}
 
 	@Override
