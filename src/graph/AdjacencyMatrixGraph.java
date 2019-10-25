@@ -2,34 +2,94 @@ package graph;
 
 import java.util.*;
 
+/**
+ * An Object that models a graph using an Adjacency Matrix.
+ *
+ * @param <V> the type of vertex in the graph
+ * @author AED Class # 003 // 2019
+ * @version 1.0 - 10/2019
+ */
 public class AdjacencyMatrixGraph<V> implements IGraph<V> {
 
+    /**
+     * The length of the matrix when using the default Constructor.
+     */
     private static final int DEFAULT_CAPACITY = 10;
+
+    /**
+     * The rate at which the matrix's length increases as it becomes full.
+     */
     private static final double GROWTH_FACTOR = 1.5;
 
+    /**
+     * The last index in the matrix at which a vertex exists.
+     */
     private int size; //logic size
 
+    /**
+     * Indicates whether the graph represented by the matrix is directed.
+     */
     private boolean isDirected;
 
+    /**
+     * The matrix itself.
+     */
     private double[][] adjacencyMatrix;
 
+    /**
+     * A Map that accesses any vertex in the graph through its index in the matrix.
+     */
     private Map<Integer, V> vertices;
+
+    /**
+     * A Map that uses any vertex as a key to access its corresponding index in the matrix.
+     */
     private Map<V, Integer> verticesIndices;
+
+    /**
+     * A Set that contains ordered non-duplicate Integers of empty row/columns in the matrix whose values are lesser
+     * than the logical size.
+     */
     private NavigableSet<Integer> emptySlots = new TreeSet<>();
 
+    /**
+     * Constructs a new, empty matrix of double values of default length, along with two Map objects that interconnect
+     * vertices to their indices in the matrix and indices in the matrix to their vertices.
+     */
     public AdjacencyMatrixGraph() {
         initialize(DEFAULT_CAPACITY);
     }
 
+    /**
+     * Constructs a new, empty matrix of double values of default length, along with two Map objects that interconnect
+     * vertices to their indices in the matrix and indices in the matrix to their vertices. The graph represented by the
+     * matrix is directed if id is true.
+     *
+     * @param id a boolean that indicates the graph is directed when true.
+     */
     public AdjacencyMatrixGraph(boolean id) {
         initialize(DEFAULT_CAPACITY);
         isDirected = id;
     }
 
+    /**
+     * Constructs a new, empty matrix of double values of default length, along with two Map objects that interconnect
+     * vertices to their indices in the matrix and indices in the matrix to their vertices.
+     *
+     * @param capacity the initial size of the adjacency matrix
+     */
     public AdjacencyMatrixGraph(int capacity) {
         initialize(capacity);
     }
 
+    /**
+     * Constructs a new, empty matrix of double values of default length, along with two Map objects that interconnect
+     * vertices to their indices in the matrix and indices in the matrix to their vertices. The graph represented by the
+     * matrix is directed if id is true.
+     *
+     * @param id a boolean that indicates the graph is directed when true.
+     * @param capacity the initial size of the adjacency matrix
+     */
     public AdjacencyMatrixGraph(boolean id, int capacity) {
         initialize(capacity);
         isDirected = id;
@@ -150,7 +210,6 @@ public class AdjacencyMatrixGraph<V> implements IGraph<V> {
             return adjacencyMatrix[uValor][vValor] == 1 && adjacencyMatrix[vValor][uValor] == 1;
             // in case the graph is not connected then both should be connected to each other
         }
-
     }
 
     @Override
