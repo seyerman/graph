@@ -24,4 +24,6 @@ public interface ICollection<T> {
 	 * @return The element removed from the data structure. 
 	 */
 	public T peek();
+	
+	public boolean isEmpty();
 }
