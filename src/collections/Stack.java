@@ -1,5 +1,7 @@
 package collections;
 
+import java.util.Collection;
+
 public class Stack <T> implements ICollection<T>{
 	private java.util.Stack<T> myStack;
 	
@@ -25,6 +27,11 @@ public class Stack <T> implements ICollection<T>{
 	@Override
 	public boolean isEmpty() {
 		return myStack.empty();
+	}
+
+	@Override
+	public void addAll(Collection<T> c) {
+		myStack.addAll(c);
 	}
 	
 }
