@@ -113,23 +113,29 @@ class AdjacencyListGraphTest {
 		
 		alg.addEdge(1, 2);
 		
-		int ValueU = alg.getVertices().get(0);
-		int ValueV = alg.getVertices().get(1);
-		
-		assertTrue("The edge was not added", alg.getAdjacencyList().get(ValueU).get(ValueV) != null);
+		assertTrue("The edge was not added", alg.areConnected(1, 2));
 		
 	}
 	
 	@Test
 	public void testAddEdge2() {
 		
+		stage5();
+		
+		alg.addEdge(1, 2);
+		
+		assertTrue("The edge was not added", alg.areConnected(1, 2));
 		
 	}
 	
 	@Test
 	public void testRemoveVertex() {
 		
+		stage6();
 		
+		alg.removeEdge(1, 2);
+		
+		assertTrue("The vertex was not remove", !alg.areConnected(1, 2));
 		
 	}
 	
