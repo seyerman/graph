@@ -2,6 +2,12 @@ package graph;
 
 import java.util.List;
 
+/**
+ * This interface has the minimum and general features that a graph should implement no matter which would be its representation.
+ * @author AED Class # 003 // 2019
+ * @version 1.0 - 10/2019
+ * @param <V> Abstract data type which represents an object from a natural problem that is going to be modeled as a vertex in a graph representation of the problem
+ */
 public interface IGraph<V> {
 	
 	/**
