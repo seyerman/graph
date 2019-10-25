@@ -80,8 +80,21 @@ public class AdjacencyMatrixGraph<V> implements IGraph<V>{
 
 	@Override
 	public boolean areConnected(V u, V v) {
-		// TODO Auto-generated method stub
-		return false;
+		
+		int uValor = vertices.get(u);
+		int vValor = vertices.get(v);
+		
+//		return adjacencyMatrix[uValor][vValor] == 1 && adjacencyMatrix[vValor][uValor] == 1;
+//		This return exists in case there is no need of being specific about the direction
+		
+		if(isDirected) {
+			return adjacencyMatrix[uValor][vValor] == 1;
+			// this returns if u connected and directed to v
+		}else {
+			return adjacencyMatrix[uValor][vValor] == 1 && adjacencyMatrix[vValor][uValor] == 1;
+			// in case the graph is not connected then both should be connected to each other
+		}
+		
 	}
 
 	@Override
