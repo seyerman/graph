@@ -35,7 +35,7 @@ public class GraphAlgorithms{
 	 * @param <V> Abstract data type that represent a vertex within the graph
 	 * @param g The graph to be traversed.
 	 * @param v The vertex from which the traversal will begin.
-	 * @param ds The data structure to be used in this traversal. Either a Stack for a DFS or a Queue for BFS.
+	 * @param ds The data structure to be used in this traversal. Either a Stack for a DFS or a Queue for BFS.<br>
 	 * <pre> ds Must be empty.
 	 * @return A List with the resulting traversal performed on the given graph from the given vertex.
 	 */
