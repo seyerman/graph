@@ -30,8 +30,11 @@ public class AdjacencyListGraph<V> implements IGraph<V>{
 	public boolean addVertex(V v) {
 		boolean added = false;
 		if(!searchVertex(v)) {
+			@SuppressWarnings("unchecked")
+			List<V> vList = (List<V>) new ArrayList<Object>();
 			int key = adjacencyLists.size();
 			vertices.put(v, key);
+			adjacencyLists.add(vList);
 			added = true;
 		}
 		return added;
@@ -40,10 +43,7 @@ public class AdjacencyListGraph<V> implements IGraph<V>{
 	private boolean searchVertex(V v) {
 		return vertices.containsValue(v);
 	}
-	
 
-	//pre: u y v tienen que estar en el mapa de los vertices
-	// si el grafo es dirigido , la arista se agreta de direccion u --- > v
 	@Override
 	public void addEdge(V u, V v) {
 		// TODO Auto-generated method stub
@@ -132,7 +132,19 @@ public class AdjacencyListGraph<V> implements IGraph<V>{
 	@Override
 	public boolean isDirected() {
 		// TODO Auto-generated method stub
-		return false;
+		return isDirected;
+	}
+	
+	public Map<V, Integer> getVertices(){
+		
+		return vertices;
+		
+	}
+	
+	public List<List<V>> getAdjacencyList(){
+		
+		return adjacencyLists;
+		
 	}
 	
 }
