@@ -1,5 +1,9 @@
 package graph;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import java.util.*;
 
 /**
@@ -35,6 +39,7 @@ public class AdjacencyMatrixGraph<V> implements IGraph<V> {
      * The matrix itself.
      */
     private double[][] adjacencyMatrix;
+    private double[][] adjacencyMatrixWeight;
 
     /**
      * A Map that accesses any vertex in the graph through its index in the matrix.
@@ -131,14 +136,29 @@ public class AdjacencyMatrixGraph<V> implements IGraph<V> {
 
     @Override
     public void addEdge(V u, V v) {
-        // TODO Auto-generated method stub
-
+    	int x = verticesIndices.get(u);
+		int y = verticesIndices.get(v);
+    	if(!isDirected) {
+			adjacencyMatrix[x][y] = 1;
+			adjacencyMatrix[y][x] = 1;
+		}else {
+			adjacencyMatrix[x][y] = 1;
+		}
     }
 
     @Override
     public void addEdge(V u, V v, double w) {
-        // TODO Auto-generated method stub
-
+    	int x = verticesIndices.get(u);
+		int y = verticesIndices.get(v);
+    	if(!isDirected) {
+			adjacencyMatrix[x][y] = 1;
+			adjacencyMatrix[y][x] = 1;
+			adjacencyMatrixWeight[x][y] = w;
+			adjacencyMatrixWeight[y][x] = w;
+		}else {
+			adjacencyMatrix[x][y] = 1;
+			adjacencyMatrixWeight[x][y] = w;
+		}
     }
 
     @Override
@@ -162,8 +182,12 @@ public class AdjacencyMatrixGraph<V> implements IGraph<V> {
 
     @Override
     public void removeEdge(V u, V v) {
-        // TODO Auto-generated method stub
-
+    	if(!isDirected) {
+			adjacencyMatrix[(int) u][(int) v] = 0;
+			adjacencyMatrix[(int) v][(int) u] = 0;
+		}else {
+			adjacencyMatrix[(int) u][(int) v] = 0;
+		}
     }
 
     @Override
@@ -214,11 +238,16 @@ public class AdjacencyMatrixGraph<V> implements IGraph<V> {
 
     @Override
     public double[][] weightMatrix() {
-        return adjacencyMatrix;
+        return adjacencyMatrixWeight;
     }
 
     @Override
     public boolean isDirected() {
         return isDirected;
     }
+
+	@Override
+	public int getIndex(V u) {
+		return verticesIndices.get(u);
+	}
 }
