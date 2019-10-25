@@ -16,6 +16,7 @@ public class AdjacencyMatrixGraph<V> implements IGraph<V> {
     private boolean isDirected;
 
     private double[][] adjacencyMatrix;
+    private double[][] adjacencyMatrixWeight;
 
     private Map<Integer, V> vertices;
     private Map<V, Integer> verticesIndices;
@@ -92,8 +93,11 @@ public class AdjacencyMatrixGraph<V> implements IGraph<V> {
     	if(!isDirected) {
 			adjacencyMatrix[x][y] = 1;
 			adjacencyMatrix[y][x] = 1;
+			adjacencyMatrixWeight[x][y] = w;
+			adjacencyMatrixWeight[y][x] = w;
 		}else {
 			adjacencyMatrix[x][y] = 1;
+			adjacencyMatrixWeight[x][y] = w;
 		}
     }
 
@@ -175,7 +179,7 @@ public class AdjacencyMatrixGraph<V> implements IGraph<V> {
 
     @Override
     public double[][] weightMatrix() {
-        return adjacencyMatrix;
+        return adjacencyMatrixWeight;
     }
 
     @Override
