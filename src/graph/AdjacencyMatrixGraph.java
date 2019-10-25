@@ -1,5 +1,9 @@
 package graph;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import java.util.*;
 
 public class AdjacencyMatrixGraph<V> implements IGraph<V> {
@@ -71,8 +75,12 @@ public class AdjacencyMatrixGraph<V> implements IGraph<V> {
 
     @Override
     public void addEdge(V u, V v) {
-        // TODO Auto-generated method stub
-
+    	if(!isDirected) {
+			adjacencyMatrix[(int) u][(int) v] = 1;
+			adjacencyMatrix[(int) v][(int) u] = 1;
+		}else {
+			adjacencyMatrix[(int) u][(int) v] = 1;
+		}
     }
 
     @Override
@@ -102,8 +110,12 @@ public class AdjacencyMatrixGraph<V> implements IGraph<V> {
 
     @Override
     public void removeEdge(V u, V v) {
-        // TODO Auto-generated method stub
-
+    	if(!isDirected) {
+			adjacencyMatrix[(int) u][(int) v] = 0;
+			adjacencyMatrix[(int) v][(int) u] = 0;
+		}else {
+			adjacencyMatrix[(int) u][(int) v] = 0;
+		}
     }
 
     @Override

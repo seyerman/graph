@@ -65,9 +65,9 @@ public class AdjacencyListGraph<V> implements IGraph<V>{
 			// Create a new empty list for that vertex
 			List<V> vList = (List<V>) new ArrayList<Object>();
 			// Get the position for this new vertex
-			int key = adjacencyLists.size();
+			int index = adjacencyLists.size();
 			// Add the vertex to the map
-			vertices.put(v, key);
+			vertices.put(v, index);
 			// Add the vertex empty list to the adjacencyLists
 			adjacencyLists.add(vList);
 			// Change the value to true indicating that it was possible to add the vertex
