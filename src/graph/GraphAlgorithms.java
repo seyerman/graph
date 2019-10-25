@@ -40,7 +40,6 @@ public class GraphAlgorithms{
 	 * @return A List with the resulting traversal performed on the given graph from the given vertex.
 	 */
 	private static <V> List<V> traversal(IGraph<V> g, V v, List<V> ds){
-
 		V vertex = v;
 		while(!ds.isEmpty()) {
 			
