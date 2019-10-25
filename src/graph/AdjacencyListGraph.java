@@ -30,8 +30,11 @@ public class AdjacencyListGraph<V> implements IGraph<V>{
 	public boolean addVertex(V v) {
 		boolean added = false;
 		if(!searchVertex(v)) {
+			@SuppressWarnings("unchecked")
+			List<V> vList = (List<V>) new ArrayList<Object>();
 			int key = adjacencyLists.size();
 			vertices.put(v, key);
+			adjacencyLists.add(vList);
 			added = true;
 		}
 		return added;
