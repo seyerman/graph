@@ -1,6 +1,8 @@
 package graph;
 import java.util.*;
 
+import collections.ICollection;
+
 /**
  * This class is meant to execute different algorithms on graphs. 
  * @author AED Class # 003 // 2019
@@ -35,16 +37,23 @@ public class GraphAlgorithms{
 	 * @param <V> Abstract data type that represent a vertex within the graph
 	 * @param g The graph to be traversed.
 	 * @param v The vertex from which the traversal will begin.
-	 * @param ds The data structure to be used in this traversal. Either a Stack for a DFS or a Queue for BFS.
+	 * @param ds The data structure to be used in this traversal. Either a Stack for a DFS or a Queue for BFS.<br>
 	 * <pre> ds Must be empty.
 	 * @return A List with the resulting traversal performed on the given graph from the given vertex.
 	 */
-	private static <V> List<V> traversal(IGraph<V> g, V v, List<V> ds){
+	private static <V> List<V> traversal(IGraph<V> g, V v, ICollection<V> ds){
+		List<V> ret = new ArrayList<>();
+		//Invariant: Each algorithm adds the given element first.
 		V vertex = v;
+		ds.add(vertex);
+		//Invariant: While the traversal occurs, the given DS to be used will have, at least, one element.
 		while(!ds.isEmpty()) {
+			 //Invariant: Element added is always retired from the DS
+			vertex = ds.poll();
+			ret.add(vertex);
 			
 		}
-		return null; //TODO Create method
+		return null;
 	}
 	
 	/**
