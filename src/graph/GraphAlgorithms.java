@@ -44,6 +44,7 @@ public class GraphAlgorithms{
 	private static <V> List<V> traversal(IGraph<V> g, V v, ICollection<V> ds){
 		List<V> trav = new ArrayList<>();
 		//Invariant: Each algorithm adds the given element first. 
+
 		V vertex = v;
 		ds.add(vertex);
 		
