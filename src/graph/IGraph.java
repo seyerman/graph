@@ -79,4 +79,6 @@ public interface IGraph<V> {
 	 * @return True if the graph is directed or false if it isn't
 	 */
 	public boolean isDirected();
+	
+	public int getIndex(V u);
 }

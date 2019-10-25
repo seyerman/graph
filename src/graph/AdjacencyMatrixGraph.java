@@ -186,4 +186,9 @@ public class AdjacencyMatrixGraph<V> implements IGraph<V> {
     public boolean isDirected() {
         return isDirected;
     }
+
+	@Override
+	public int getIndex(V u) {
+		return verticesIndices.get(u);
+	}
 }

@@ -190,5 +190,10 @@ public class AdjacencyListGraph<V> implements IGraph<V>{
 	 */
 	public List<List<V>> getAdjacencyList(){		
 		return adjacencyLists;		
+	}
+
+	@Override
+	public int getIndex(V u) {
+		return vertices.get(u);
 	}	
 }

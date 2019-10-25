@@ -40,25 +40,12 @@ public class GraphAlgorithms{
 	 * @return A List with the resulting traversal performed on the given graph from the given vertex.
 	 */
 	private static <V> List<V> traversal(IGraph<V> g, V v, List<V> ds){
-		List<V> ret = new ArrayList<>();
-		//Invariant: Each algorithm adds the given element first. 
+
 		V vertex = v;
-		ds.add(vertex);
-		//Invariant: While the traversal occurs, the given DS to be used will have, at least, one element.
 		while(!ds.isEmpty()) {
-			 //Invariant: Element added is always retired from the DS
-			ret.add(ds.get(0));
-			ds.remove(0);
 			
-			if(ds instanceof Queue<?>) {
-				//BFS
-				
-			}else if(ds instanceof Stack<?>) {
-				//DFS
-				
-			}
 		}
-		return null;
+		return null; //TODO Create method
 	}
 	
 	/**
