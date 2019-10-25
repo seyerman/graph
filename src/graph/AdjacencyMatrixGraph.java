@@ -250,4 +250,9 @@ public class AdjacencyMatrixGraph<V> implements IGraph<V> {
 	public int getIndex(V u) {
 		return verticesIndices.get(u);
 	}
+
+	@Override
+	public int getVertexSize() {
+		return vertices.size();
+	}
 }

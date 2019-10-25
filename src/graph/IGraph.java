@@ -81,4 +81,6 @@ public interface IGraph<V> {
 	public boolean isDirected();
 	
 	public int getIndex(V u);
+	
+	public int getVertexSize();
 }

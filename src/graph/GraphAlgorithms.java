@@ -42,18 +42,28 @@ public class GraphAlgorithms{
 	 * @return A List with the resulting traversal performed on the given graph from the given vertex.
 	 */
 	private static <V> List<V> traversal(IGraph<V> g, V v, ICollection<V> ds){
-		List<V> ret = new ArrayList<>();
+		List<V> trav = new ArrayList<>();
 		//Invariant: Each algorithm adds the given element first. 
 		V vertex = v;
 		ds.add(vertex);
+		
+		boolean[] visited = new boolean[g.getVertexSize()];
+		
 		//Invariant: While the traversal occurs, the given DS to be used will have, at least, one element.
 		while(!ds.isEmpty()) {
 			 //Invariant: Element added is always retired from the DS
 			vertex = ds.poll();
-			ret.add(vertex);
+			int indexV = g.getIndex(vertex);
 			
+			if(!visited[indexV]) {
+				trav.add(vertex);
+				visited[indexV] = true;
+				
+				List<V> adjacents = g.vertexAdjacent(vertex);
+				ds.addAll(adjacents);
+			}
 		}
-		return null;
+		return trav;
 	}
 	
 	/**

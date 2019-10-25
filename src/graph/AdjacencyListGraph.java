@@ -195,5 +195,10 @@ public class AdjacencyListGraph<V> implements IGraph<V>{
 	@Override
 	public int getIndex(V u) {
 		return vertices.get(u);
+	}
+
+	@Override
+	public int getVertexSize() {
+		return vertices.size();
 	}	
 }

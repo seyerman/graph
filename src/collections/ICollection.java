@@ -1,5 +1,7 @@
 package collections;
 
+import java.util.Collection;
+
 /**
  * An alternative Collections Interface that will be used among different implementations of IGraph. As of now, no class implements this interface.
  * @author AED Third Group - Universidad ICESI - 2019-2
@@ -26,4 +28,6 @@ public interface ICollection<T> {
 	public T peek();
 	
 	public boolean isEmpty();
+	
+	public void addAll(Collection<T> c);
 }
