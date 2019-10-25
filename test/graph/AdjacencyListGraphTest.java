@@ -29,6 +29,31 @@ class AdjacencyListGraphTest {
 		
 	}
 	
+	private void stage4() {
+		
+		alg = new AdjacencyListGraph<Integer>();
+		alg.addVertex(1);
+		alg.addVertex(2);
+		
+	}
+	
+	private void stage5() {
+		
+		alg = new AdjacencyListGraph<Integer>(true);
+		alg.addVertex(1);
+		alg.addVertex(2);
+		
+	}
+	
+	private void stage6() {
+		
+		alg = new AdjacencyListGraph<Integer>();
+		alg.addVertex(1);
+		alg.addVertex(2);
+		alg.addEdge(1, 2);
+		
+	}
+	
 	//_______________________________________________________________________________________________________
 	
 	@Test
@@ -78,6 +103,42 @@ class AdjacencyListGraphTest {
 		assertTrue("The vertex was not added", alg.getVertices().containsKey(11));
 		
 		assertTrue("That vertex was added before", !alg.addVertex(11));
+		
+	}
+	
+	@Test
+	public void testAddEdge1() {
+		
+		stage4();
+		
+		alg.addEdge(1, 2);
+		
+		int ValueU = alg.getVertices().get(0);
+		int ValueV = alg.getVertices().get(1);
+		
+		assertTrue("The edge was not added", alg.getAdjacencyList().get(ValueU).get(ValueV) != null);
+		
+	}
+	
+	@Test
+	public void testAddEdge2() {
+		
+		
+	}
+	
+	@Test
+	public void testRemoveVertex() {
+		
+		
+		
+	}
+	
+	@Test
+	public void testAreConnected() {
+		
+		stage6();
+		
+		assertTrue("The vertex are not connected", alg.areConnected(1, 2));
 		
 	}
 

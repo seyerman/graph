@@ -5,21 +5,51 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * This class models a graph using an Adjacency list
+ * @author AED Class # 003 // 2019
+ * @version 1.0 - 10/2019
+ * @param <V> Abstract data type which represents an object from a natural problem that is going to be modeled as a vertex in a graph representation of the problem
+ */
 public class AdjacencyListGraph<V> implements IGraph<V>{
 	
+	/**
+	 * Map with all the vertices within the graph.
+	 * Key of the map is the Vertex and Value is the position of the vertex in the adjacencyList
+	 */
 	private Map<V,Integer> vertices;	
+	
+	/**
+	 * A list for each Vertex within the graph which has a list with all its adjacent Vertices 
+	 */
 	private List<List<V>> adjacencyLists;
+	
+	/**
+	 * Property that say if a graph is directed or not
+	 */
 	private boolean isDirected;
 	
+	/**
+	 * Basic constructor that is initialized with default values
+	 */
 	public AdjacencyListGraph() {
 		initialize();
 	}
 
+	/**
+	 * Constructor that gets the value for "isDirected" attribute.
+	 * True if the graph is Directed or false if it's Indirected
+	 * @param id value to set "isDirected"
+	 */
 	public AdjacencyListGraph(boolean id) {
 		initialize();
 		isDirected = id;
 	}
 	
+	/**
+	 * Initializes all the data structures for this graph.
+	 * Set "isDirected" attribute in false
+	 */
 	private final void initialize() {
 		isDirected = false;
 		adjacencyLists = new ArrayList<List<V>>();
@@ -29,24 +59,32 @@ public class AdjacencyListGraph<V> implements IGraph<V>{
 	@Override
 	public boolean addVertex(V v) {
 		boolean added = false;
+		// Check if the vertex is not on the map already
 		if(!searchVertex(v)) {
 			@SuppressWarnings("unchecked")
+			// Create a new empty list for that vertex
 			List<V> vList = (List<V>) new ArrayList<Object>();
+			// Get the position for this new vertex
 			int key = adjacencyLists.size();
+			// Add the vertex to the map
 			vertices.put(v, key);
+			// Add the vertex empty list to the adjacencyLists
 			adjacencyLists.add(vList);
+			// Change the value to true indicating that it was possible to add the vertex
 			added = true;
 		}
 		return added;
 	}
 
+	/**
+	 * checks if a vertex is within the graph
+	 * @param v Vertex to be searched
+	 * @return True if found or false if not
+	 */
 	private boolean searchVertex(V v) {
 		return vertices.containsValue(v);
 	}
-	
 
-	//pre: u y v tienen que estar en el mapa de los vertices
-	// si el grafo es dirigido , la arista se agreta de direccion u --- > v
 	@Override
 	public void addEdge(V u, V v) {
 		// TODO Auto-generated method stub
@@ -138,16 +176,19 @@ public class AdjacencyListGraph<V> implements IGraph<V>{
 		return isDirected;
 	}
 	
-	public Map<V, Integer> getVertices(){
-		
-		return vertices;
-		
+	/**
+	 * 
+	 * @return all the vertices within the graph as a map data structure
+	 */
+	public Map<V, Integer> getVertices(){		
+		return vertices;		
 	}
 	
-	public List<List<V>> getAdjacencyList(){
-		
-		return adjacencyLists;
-		
-	}
-	
+	/**
+	 *
+	 * @return The graph. A list with lists of vertices and its adjacent vertices
+	 */
+	public List<List<V>> getAdjacencyList(){		
+		return adjacencyLists;		
+	}	
 }
