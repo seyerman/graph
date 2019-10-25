@@ -135,7 +135,19 @@ public class AdjacencyListGraph<V> implements IGraph<V>{
 	@Override
 	public boolean isDirected() {
 		// TODO Auto-generated method stub
-		return false;
+		return isDirected;
+	}
+	
+	public Map<V, Integer> getVertices(){
+		
+		return vertices;
+		
+	}
+	
+	public List<List<V>> getAdjacencyList(){
+		
+		return adjacencyLists;
+		
 	}
 	
 }
