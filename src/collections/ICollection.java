@@ -27,6 +27,10 @@ public interface ICollection<T> {
 	 */
 	public T peek();
 	
+	/**
+	 * Determines whether a Collection is empty or not.
+	 * @return True if this Collection has no items in it, false if not.
+	 */
 	public boolean isEmpty();
 	
 	public void addAll(Collection<T> c);
