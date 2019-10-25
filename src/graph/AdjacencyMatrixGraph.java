@@ -75,18 +75,26 @@ public class AdjacencyMatrixGraph<V> implements IGraph<V> {
 
     @Override
     public void addEdge(V u, V v) {
+    	int x = verticesIndices.get(u);
+		int y = verticesIndices.get(v);
     	if(!isDirected) {
-			adjacencyMatrix[(int) u][(int) v] = 1;
-			adjacencyMatrix[(int) v][(int) u] = 1;
+			adjacencyMatrix[x][y] = 1;
+			adjacencyMatrix[y][x] = 1;
 		}else {
-			adjacencyMatrix[(int) u][(int) v] = 1;
+			adjacencyMatrix[x][y] = 1;
 		}
     }
 
     @Override
     public void addEdge(V u, V v, double w) {
-        // TODO Auto-generated method stub
-
+    	int x = verticesIndices.get(u);
+		int y = verticesIndices.get(v);
+    	if(!isDirected) {
+			adjacencyMatrix[x][y] = 1;
+			adjacencyMatrix[y][x] = 1;
+		}else {
+			adjacencyMatrix[x][y] = 1;
+		}
     }
 
     @Override
