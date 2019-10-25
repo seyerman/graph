@@ -15,6 +15,7 @@ public class AdjacencyListGraph<V> implements IGraph<V>{
 	
 	/**
 	 * Map with all the vertices within the graph.
+	 * Key of the map is the Vertex and Value is the position of the vertex in the adjacencyList
 	 */
 	private Map<V,Integer> vertices;	
 	
