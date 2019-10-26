@@ -95,7 +95,7 @@ public class AdjacencyMatrixGraph<V> implements IGraph<V> {
      * @param id       a boolean that indicates the graph is directed when true.
      * @param capacity the initial size of the adjacency matrix
      */
-    public AdjacencyMatrixGraph(boolean id, int capacity) {//TODO: revisar las "responsabilidades" del contrato
+    public AdjacencyMatrixGraph(boolean id, int capacity) {
         initialize(capacity);
         isDirected = id;
     }
@@ -134,7 +134,7 @@ public class AdjacencyMatrixGraph<V> implements IGraph<V> {
                     }
                 }
                 size++;
-                index = size;
+                index = size - 1;
             } else {
                 index = emptySlots.pollFirst();//TODO: May assign null?
             }
@@ -146,22 +146,24 @@ public class AdjacencyMatrixGraph<V> implements IGraph<V> {
     }
 
     /**
-     * Adds a directed edge from vertex 'u' to vertex 'v' if isDirected. Adds an edge between vertices 'u' and 'v'
-     * otherwise.
+     * Adds a directed edge from vertex 'u' to vertex 'v' if the graph is directed. Otherwise, adds an edge between
+     * vertices 'u' and 'v'.
      *
      * @param u a vertex within the graph
      * @param v a vertex within the graph
      */
     @Override
     public void addEdge(V u, V v) {
-        int x = verticesIndices.get(u);
-        int y = verticesIndices.get(v);
-        if (!isDirected) {
-            adjacencyMatrix[x][y] = 1;
-            adjacencyMatrix[y][x] = 1;
-        } else {
-            adjacencyMatrix[x][y] = 1;
-        }
+        Integer x = verticesIndices.get(u);
+        Integer y = verticesIndices.get(v);
+        if (x != null && y != null) {
+            if (!isDirected) {
+                adjacencyMatrix[x][y] = 1;
+                adjacencyMatrix[y][x] = 1;
+            } else {
+                adjacencyMatrix[x][y] = 1;
+            }
+        }else{}//TODO: May need to change return type to boolean for when the edge couldn't be added
     }
 
     /**
@@ -170,11 +172,11 @@ public class AdjacencyMatrixGraph<V> implements IGraph<V> {
      *
      * @param u a vertex within the graph
      * @param v a vertex within the graph
-     * @param w is the weight of the edge
+     * @param w is the weight of the edge between 'u' and 'v'
      */
     @Override
     public void addEdge(V u, V v, double w) {
-        int x = verticesIndices.get(u);
+        int x = verticesIndices.get(u);//TODO: check pre-conditions
         int y = verticesIndices.get(v);
         if (!isDirected) {
             adjacencyMatrix[x][y] = 1;
@@ -222,7 +224,7 @@ public class AdjacencyMatrixGraph<V> implements IGraph<V> {
     @Override
     public void removeEdge(V u, V v) {
         if (!isDirected) {
-            adjacencyMatrix[(int) u][(int) v] = 0;
+            adjacencyMatrix[(int) u][(int) v] = 0;//TODO: check pre-conditions
             adjacencyMatrix[(int) v][(int) u] = 0;
         } else {
             adjacencyMatrix[(int) u][(int) v] = 0;
@@ -238,7 +240,7 @@ public class AdjacencyMatrixGraph<V> implements IGraph<V> {
     @Override
     public List<V> vertexAdjacent(V v) {
         Integer position = verticesIndices.get(v);
-        List<V> adjacentVertices;
+        List<V> adjacentVertices = null;
         if (position != null) {
             Set<Integer> adjacentVerticesPositions = new HashSet<>();
             for (int i = 0; i < size; i++) {
@@ -246,7 +248,7 @@ public class AdjacencyMatrixGraph<V> implements IGraph<V> {
                     adjacentVerticesPositions.add(i);
                 }
             }
-            if (isDirected) {//Only necessary to check if graph is directed
+            if (isDirected) {//Only necessary to execute if graph is directed
                 for (int i = 0; i < size; i++) {
                     if (adjacencyMatrix[i][position] != 0) {//Vertex at position i is adjacent
                         adjacentVerticesPositions.add(i);
@@ -258,15 +260,13 @@ public class AdjacencyMatrixGraph<V> implements IGraph<V> {
             ) {
                 adjacentVertices.add(vertices.get(key));
             }
-        } else {
-            adjacentVertices = null;
         }
         return adjacentVertices;
     }
 
     /**
-     * Determines if vertices 'u' and 'v' share an undirected edge if the graph is undirected or determines if there
-     * exists a directed edge from 'u' to 'v'.
+     * If the graph is undirected, determines if vertices 'u' and 'v' share an edge. Otherwise, determines if there is
+     * a directed edge from 'u' to 'v' and 'v' to 'u'.
      *
      * @param u a vertex
      * @param v a vertex
@@ -277,8 +277,8 @@ public class AdjacencyMatrixGraph<V> implements IGraph<V> {
         int uValor = verticesIndices.get(u);//TODO: check if 'u' and 'v' exist in the graph
         int vValor = verticesIndices.get(v);
 
-//		return adjacencyMatrix[uValor][vValor] == 1 && adjacencyMatrix[vValor][uValor] == 1;
-//		This return exists in case there is no need of being specific about the direction
+        // return adjacencyMatrix[uValor][vValor] == 1 && adjacencyMatrix[vValor][uValor] == 1;
+        // This return exists in case there is no need of being specific about the direction
 
         if (isDirected) {
             return adjacencyMatrix[uValor][vValor] == 1;
@@ -310,10 +310,15 @@ public class AdjacencyMatrixGraph<V> implements IGraph<V> {
         return isDirected;
     }
 
-	@Override
-	public int getVertexSize() {
-		return vertices.size();
-	}
+    /**
+     * Gives the amount of vertices in the graph.
+     *
+     * @return an int indicating how many vertices are in the graph
+     */
+    @Override
+    public int getVertexSize() {
+        return vertices.size();
+    }
 
     /**
      * Returns the index of vertex 'u' in the matrix.
@@ -323,8 +328,6 @@ public class AdjacencyMatrixGraph<V> implements IGraph<V> {
      */
     @Override
     public int getIndex(V u) {
-        //TODO: check if 'u' exists in the graph
-        return verticesIndices.get(u);
+        return verticesIndices.get(u);//TODO: check pre-conditions
     }
-
 }
