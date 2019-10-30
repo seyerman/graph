@@ -18,7 +18,7 @@ public class GraphAlgorithms{
 	 * @return A list with a resultant order due to a BFS
 	 */
 	public static <V> List<V> bfs(IGraph<V> g, V v){
-		return null; //TODO Create method
+		return traversal(g, v, new collections.Stack<>());
 	}
 	
 	/**
@@ -29,7 +29,7 @@ public class GraphAlgorithms{
 	 * @return A list with a resultant order due to a DFS
 	 */
 	public static <V> List<V> dfs (IGraph<V> g, V v){
-		return null; //TODO Create method
+		return traversal(g, v, new collections.Queue<V>());
 	}
 
 	/**
